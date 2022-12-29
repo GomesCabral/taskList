@@ -19,6 +19,13 @@
 			</div>
 		</nav>
 
+		<!-- SUCCESS MENSAGE IF INSERTED -->
+		<?php if( isset($_GET['include']) && $_GET['include'] == 1 ) { ?>
+			<div class="bg-success pt-2 text-white d-flex justify-content-center">
+				<h5>Task inserted</h5>
+			</div>
+		<?php } ?>
+
 		<div class="container app">
 			<div class="row">
 				<div class="col-md-3 menu">
@@ -36,7 +43,7 @@
 								<h4>New task</h4>
 								<hr />
 
-								<form method="post" action="task_controller.php">
+								<form method="post" action="task_controller.php?acao=insert">
 									<div class="form-group">
 										<label>Task Description:</label>
 										<input name="task" type="text" class="form-control" placeholder="Exemple: Wash car">

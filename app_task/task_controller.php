@@ -5,20 +5,24 @@
     require 'task.service.php';
     require 'connection.php';
 
-    echo '<pre>';
-    print_r($_POST);
-    echo '/<pre>';
+    $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
 
-    $task = new Task();
-    $task->__set('task', $_POST['task']);
+    if($acao == 'insert'){
 
-    $connection = new Connection();
+        // echo '<pre>';
+        // print_r($_POST);
+        // echo '/<pre>';
 
-    $taskService = new TaskService($connection, $task);
-    $taskService->create();
+        $task = new Task();
+        $task->__set('task', $_POST['task']);
 
-    echo '<pre>';
-    print_r($taskService);
-    echo '/<pre>';
-    
+        $connection = new Connection();
+
+        $taskService = new TaskService($connection, $task);
+        $taskService->create();
+        
+        header('Location: new_task.php?include=1');
+    }else if($acao == 'recover'){
+        echo 'chegamos';
+    }
 ?>
