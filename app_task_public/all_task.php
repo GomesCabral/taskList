@@ -1,3 +1,8 @@
+<?php
+	$acao = 'recover';
+	require 'task_controller.php';
+?>
+
 <html>
 	<head>
 		<meta charset="utf-8" />
