@@ -1,6 +1,10 @@
 <?php
 	$acao = 'recover';
 	require 'task_controller.php';
+
+	// echo '<pre>';
+    // print_r($tasks);	VEM DE TASK CONTROLLER
+    // echo '</pre>';
 ?>
 
 <html>
@@ -38,26 +42,19 @@
 					<div class="container pagina">
 						<div class="row">
 							<div class="col">
-								<h4>New task</h4>
+								<h4>All task</h4>
 								<hr />
 
-								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">Wash car (status)</div>
+								<?php foreach($tasks as $key => $task) { ?>
+									<div class="row mb-3 d-flex align-items-center tarefa">
+									<div class="col-sm-9"><?= $task->task ?> (<?= $task->status ?>)</div>
 									<div class="col-sm-3 mt-2 d-flex justify-content-between">
 										<i class="fas fa-trash-alt fa-lg text-danger"></i>
 										<i class="fas fa-edit fa-lg text-info"></i>
 										<i class="fas fa-check-square fa-lg text-success"></i>
 									</div>
 								</div>
-
-								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">Going shopping (status)</div>
-									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
-										<i class="fas fa-edit fa-lg text-info"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
-									</div>
-								</div>
+								<?php } ?>
 								
 							</div>
 						</div>

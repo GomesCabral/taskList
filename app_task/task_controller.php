@@ -1,6 +1,7 @@
 <?php
 
     // REQUIRE GONNA BE EXECUTED IN TASK_CONTROLLER IN THE PUBLIC FOLDER
+
     require 'task.model.php';
     require 'task.service.php';
     require 'connection.php';
@@ -22,7 +23,13 @@
         $taskService->create();
         
         header('Location: new_task.php?include=1');
+        
     }else if($acao == 'recover'){
-        echo 'chegamos';
+
+        $task = new Task();
+        $connection = new Connection();
+
+        $taskService = new TaskService($connection, $task);
+        $tasks = $taskService->read();
     }
 ?>

@@ -21,7 +21,10 @@ use FTP\Connection;
         }
 
         public function read(){
-            
+            $query = 'SELECT t.id, s.status, t.task FROM tb_tasks AS t LEFT JOIN tb_status AS s ON (t.id_status = s.id)';
+		    $stmt = $this->connection->prepare($query);
+		    $stmt->execute();
+		    return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
 
         public function update(){
