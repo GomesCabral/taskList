@@ -66,6 +66,11 @@
 				//insertBefore allows to insert an element in the element already rendered
 				task.insertBefore(form, task[0]);
 			}
+
+			function deleteTask(id){
+				location.href = 'all_task.php?acao=deleteTask&id='+id
+			}
+
 		</script>
 	</head>
 
@@ -102,7 +107,7 @@
 										<?= $task->task ?> (<?= $task->status ?>)
 									</div>
 									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
+										<i class="fas fa-trash-alt fa-lg text-danger" onclick="deleteTask(<?= $task->id ?>)"></i>
 										<i class="fas fa-edit fa-lg text-info" onClick="edit(<?= $task->id ?>, '<?= $task->task ?>')"></i>
 										<i class="fas fa-check-square fa-lg text-success"></i>
 									</div>

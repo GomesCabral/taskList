@@ -47,5 +47,16 @@
         if($taskService->update()){
             header('Location: all_task.php');
         }
+
+    }else if($acao == 'deleteTask'){
+        $task = new Task();
+        $task->__set('id', $_GET['id']);
+
+        $connection = new Connection();
+        $taskService = new TaskService($connection, $task);
+
+        if($taskService->delete()){
+            header('Location: all_task.php');
+        }
     }
 ?>

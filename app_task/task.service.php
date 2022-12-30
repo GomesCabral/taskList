@@ -36,7 +36,10 @@ use FTP\Connection;
         }
 
         public function delete(){
-            
+            $query = "DELETE FROM tb_tasks WHERE id = :id";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':id', $this->task->__get('id'));
+            return $stmt->execute();
         }
     }
 ?>
