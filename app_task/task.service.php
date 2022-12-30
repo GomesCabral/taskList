@@ -28,7 +28,11 @@ use FTP\Connection;
         }
 
         public function update(){
-            
+          $query = "UPDATE tb_tasks SET task= :task WHERE id = :id";
+          $stmt = $this->connection->prepare($query);
+          $stmt->bindValue(':task', $this->task->__get('task'));
+          $stmt->bindValue(':id', $this->task->__get('id'));
+          return $stmt->execute();
         }
 
         public function delete(){

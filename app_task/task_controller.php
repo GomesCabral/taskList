@@ -31,5 +31,21 @@
 
         $taskService = new TaskService($connection, $task);
         $tasks = $taskService->read();
+
+    }else if($acao == 'update'){
+        // echo '<pre>';
+        // print_r($_POST);
+        // echo '/<pre>';
+        $task = new Task();
+        $task->__set('id', $_POST['id']);
+        $task->__set('task', $_POST['task']);
+
+        $connection = new Connection();
+
+        $taskService = new TaskService($connection, $task);
+        
+        if($taskService->update()){
+            header('Location: all_task.php');
+        }
     }
 ?>
