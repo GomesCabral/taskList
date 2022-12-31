@@ -7,6 +7,7 @@
     require 'connection.php';
 
     $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
+    // echo $acao;
 
     if($acao == 'insert'){
 
@@ -58,5 +59,19 @@
         if($taskService->delete()){
             header('Location: all_task.php');
         }
+
+    }else if($acao == 'checkTask'){
+
+        $task = new Task();
+        $task->__set('id', $_GET['id']);
+        $task->__set('id_status', 2);
+
+        $connection = new Connection();
+        
+        $taskService = new TaskService($connection, $task);
+
+        $taskService->checkTask();
+
+        header('Location: all_task.php');
     }
 ?>

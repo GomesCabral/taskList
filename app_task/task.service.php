@@ -41,5 +41,13 @@ use FTP\Connection;
             $stmt->bindValue(':id', $this->task->__get('id'));
             return $stmt->execute();
         }
+
+        public function checkTask(){
+            $query = "UPDATE tb_tasks SET id_status= :id_status WHERE id = :id";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':id_status', $this->task->__get('id_status'));
+            $stmt->bindValue(':id', $this->task->__get('id'));
+            return $stmt->execute();
+        }
     }
 ?>
