@@ -71,6 +71,10 @@
 				location.href = 'all_task.php?acao=deleteTask&id='+id
 			}
 
+			function checkTask(id){
+				location.href = 'all_task.php?acao=checkTask&id='+id
+			}
+
 		</script>
 	</head>
 
@@ -108,8 +112,10 @@
 									</div>
 									<div class="col-sm-3 mt-2 d-flex justify-content-between">
 										<i class="fas fa-trash-alt fa-lg text-danger" onclick="deleteTask(<?= $task->id ?>)"></i>
-										<i class="fas fa-edit fa-lg text-info" onClick="edit(<?= $task->id ?>, '<?= $task->task ?>')"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
+										
+										<?php if($task->status == 'pendente'){ ?><i class="fas fa-edit fa-lg text-info" onClick="edit(<?= $task->id ?>, '<?= $task->task ?>')"></i>
+										<i class="fas fa-check-square fa-lg text-success" onclick="checkTask(<?= $task->id ?>)"></i>
+										<?php } ?>
 									</div>
 								</div>
 								<?php } ?>
