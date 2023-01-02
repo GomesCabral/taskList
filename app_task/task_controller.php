@@ -46,7 +46,12 @@
         $taskService = new TaskService($connection, $task);
         
         if($taskService->update()){
-            header('Location: all_task.php');
+
+            if(isset($_GET['pag']) && $_GET['pag'] == 'index'){
+                header('Location: index.php');
+            }else{
+                header('Location: all_task.php');
+            }
         }
 
     }else if($acao == 'deleteTask'){
@@ -57,7 +62,11 @@
         $taskService = new TaskService($connection, $task);
 
         if($taskService->delete()){
-            header('Location: all_task.php');
+            if(isset($_GET['pag']) && $_GET['pag'] == 'index'){
+                header('Location: index.php');
+            }else{
+                header('Location: all_task.php');
+            }
         }
 
     }else if($acao == 'checkTask'){
@@ -72,6 +81,19 @@
 
         $taskService->checkTask();
 
-        header('Location: all_task.php');
+        if(isset($_GET['pag']) && $_GET['pag'] == 'index'){
+            header('Location: index.php');
+        }else{
+            header('Location: all_task.php');
+        }
+
+    }else if($acao == 'pendinkTasks'){
+        $task = new Task();
+        $task->__set('id_status', 1);
+        
+        $connection = new Connection();
+
+        $taskService = new TaskService($connection, $task);
+        $tasks = $taskService->pendinkTasks();
     }
 ?>

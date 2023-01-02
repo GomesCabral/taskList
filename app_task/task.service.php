@@ -49,5 +49,12 @@ use FTP\Connection;
             $stmt->bindValue(':id', $this->task->__get('id'));
             return $stmt->execute();
         }
+
+        public function pendinkTasks(){
+            $query = 'SELECT t.id, s.status, t.task FROM tb_tasks AS t LEFT JOIN tb_status AS s ON (t.id_status = s.id) WHERE t.id_status = :id_status';
+		    $stmt = $this->connection->prepare($query);
+		    $stmt->bindValue(':id_status', $this->task->__get('id_status'));
+		    $stmt->execute();
+		    return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
     }
-?>
